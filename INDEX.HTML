@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrandStay | Hotel Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">G</div>
+        <div><h2>GrandStay</h2><small>HOTEL MANAGEMENT</small></div>
+      </div>
+
+      <div class="side-label">MAIN MENU</div>
+      <nav>
+        <button class="nav-link active" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-link" data-page="rooms"><span>▤</span> Room Management</button>
+        <button class="nav-link" data-page="customers"><span>♙</span> Customers</button>
+        <button class="nav-link" data-page="bookings"><span>▣</span> Bookings</button>
+        <button class="nav-link" data-page="payments"><span>₹</span> Payments</button>
+        <button class="nav-link" data-page="reports"><span>▥</span> Reports</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">✦</div>
+          <strong>GrandStay Hotel</strong>
+          <p>Manage your hotel operations in one place.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar">A</div>
+          <div><strong>Administrator</strong><small>Hotel Manager</small></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">HOTEL MANAGEMENT SYSTEM</div>
+          <h1 id="page-heading">Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="today" id="today-date"></span>
+          <div class="top-avatar">A</div>
+        </div>
+      </header>
+
+      <section id="dashboard" class="page active">
+        <div class="welcome">
+          <div>
+            <p class="eyebrow light">WELCOME BACK</p>
+            <h2>Good to see you, Administrator!</h2>
+            <p>Here's what's happening at GrandStay today.</p>
+          </div>
+          <button class="btn btn-white" data-page="bookings">＋ New Booking</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-top"><span>Total Rooms</span><span class="stat-icon purple">▤</span></div><h2 id="total-rooms">0</h2><small>Hotel room inventory</small></div>
+          <div class="stat-card"><div class="stat-top"><span>Available Rooms</span><span class="stat-icon green">✓</span></div><h2 id="available-rooms">0</h2><small>Ready for guests</small></div>
+          <div class="stat-card"><div class="stat-top"><span>Active Bookings</span><span class="stat-icon orange">▣</span></div><h2 id="active-bookings">0</h2><small>Current and upcoming</small></div>
+          <div class="stat-card"><div class="stat-top"><span>Total Revenue</span><span class="stat-icon blue">₹</span></div><h2 id="total-revenue">₹0</h2><small>From paid bookings</small></div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="panel">
+            <div class="panel-heading"><div><h3>Recent Bookings</h3><p>Latest guest reservations</p></div><button class="text-btn" data-page="bookings">View all →</button></div>
+            <div class="table-wrap"><table><thead><tr><th>BOOKING ID</th><th>CUSTOMER</th><th>ROOM</th><th>STATUS</th><th>AMOUNT</th></tr></thead><tbody id="dashboard-bookings"></tbody></table></div>
+          </div>
+          <div class="panel">
+            <div class="panel-heading"><div><h3>Room Status</h3><p>Current room availability</p></div></div>
+            <div class="room-summary" id="room-summary"></div>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <h3>Quick Actions</h3>
+          <div class="action-grid">
+            <button class="action-card" data-action="add-booking"><span>＋</span><strong>Create Booking</strong><small>Reserve a room for a guest</small></button>
+            <button class="action-card" data-action="add-customer"><span>♙</span><strong>Add Customer</strong><small>Register a new guest</small></button>
+            <button class="action-card" data-action="add-room"><span>▤</span><strong>Add Room</strong><small>Add a room to inventory</small></button>
+            <button class="action-card" data-page="reports"><span>▥</span><strong>View Reports</strong><small>Check hotel performance</small></button>
+          </div>
+        </div>
+      </section>
+
+      <section id="rooms" class="page">
+        <div class="page-tools">
+          <div><h2>Room Management</h2><p>Manage room inventory, pricing and availability.</p></div>
+          <button class="btn btn-primary" data-action="add-room">＋ Add New Room</button>
+        </div>
+        <div class="filter-bar">
+          <input id="room-search" placeholder="Search room number or type...">
+          <select id="room-filter"><option value="">All Room Status</option><option>Available</option><option>Occupied</option><option>Maintenance</option></select>
+        </div>
+        <div class="panel"><div class="table-wrap"><table><thead><tr><th>ROOM NO.</th><th>ROOM TYPE</th><th>PRICE / NIGHT</th><th>CAPACITY</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="rooms-table"></tbody></table></div></div>
+      </section>
+
+      <section id="customers" class="page">
+        <div class="page-tools">
+          <div><h2>Customer Management</h2><p>View and manage registered hotel guests.</p></div>
+          <button class="btn btn-primary" data-action="add-customer">＋ Add Customer</button>
+        </div>
+        <div class="filter-bar"><input id="customer-search" placeholder="Search by name, email or phone..."></div>
+        <div class="panel"><div class="table-wrap"><table><thead><tr><th>CUSTOMER</th><th>EMAIL</th><th>PHONE</th><th>CITY</th><th>ACTIONS</th></tr></thead><tbody id="customers-table"></tbody></table></div></div>
+      </section>
+
+      <section id="bookings" class="page">
+        <div class="page-tools">
+          <div><h2>Booking Management</h2><p>Create reservations and manage guest check-in/check-out.</p></div>
+          <button class="btn btn-primary" data-action="add-booking">＋ Create Booking</button>
+        </div>
+        <div class="filter-bar">
+          <input id="booking-search" placeholder="Search booking ID or customer...">
+          <select id="booking-filter"><option value="">All Booking Status</option><option>Booked</option><option>Checked In</option><option>Checked Out</option><option>Cancelled</option></select>
+        </div>
+        <div class="panel"><div class="table-wrap"><table><thead><tr><th>BOOKING ID</th><th>CUSTOMER</th><th>ROOM</th><th>CHECK-IN</th><th>CHECK-OUT</th><th>AMOUNT</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="bookings-table"></tbody></table></div></div>
+      </section>
+
+      <section id="payments" class="page">
+        <div class="page-tools"><div><h2>Payment Management</h2><p>Track paid and pending booking payments.</p></div></div>
+        <div class="stats-grid compact">
+          <div class="stat-card"><div class="stat-top"><span>Paid Amount</span><span class="stat-icon green">✓</span></div><h2 id="paid-amount">₹0</h2></div>
+          <div class="stat-card"><div class="stat-top"><span>Pending Amount</span><span class="stat-icon orange">◷</span></div><h2 id="pending-amount">₹0</h2></div>
+          <div class="stat-card"><div class="stat-top"><span>Total Transactions</span><span class="stat-icon blue">₹</span></div><h2 id="transactions-count">0</h2></div>
+        </div>
+        <div class="panel"><div class="panel-heading"><div><h3>Payment Records</h3><p>Payments linked to hotel bookings</p></div></div><div class="table-wrap"><table><thead><tr><th>BOOKING ID</th><th>CUSTOMER</th><th>DATE</th><th>METHOD</th><th>AMOUNT</th><th>PAYMENT STATUS</th><th>ACTION</th></tr></thead><tbody id="payments-table"></tbody></table></div></div>
+      </section>
+
+      <section id="reports" class="page">
+        <div class="page-tools"><div><h2>Hotel Reports</h2><p>Summary of hotel bookings, rooms and revenue.</p></div><button class="btn btn-primary" id="print-report">⎙ Print Report</button></div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-top"><span>Total Customers</span><span class="stat-icon purple">♙</span></div><h2 id="report-customers">0</h2></div>
+          <div class="stat-card"><div class="stat-top"><span>Total Bookings</span><span class="stat-icon blue">▣</span></div><h2 id="report-bookings">0</h2></div>
+          <div class="stat-card"><div class="stat-top"><span>Paid Revenue</span><span class="stat-icon green">₹</span></div><h2 id="report-revenue">₹0</h2></div>
+          <div class="stat-card"><div class="stat-top"><span>Pending Payments</span><span class="stat-icon orange">◷</span></div><h2 id="report-pending">₹0</h2></div>
+        </div>
+        <div class="dashboard-grid">
+          <div class="panel"><div class="panel-heading"><div><h3>Booking Summary</h3><p>Bookings by current status</p></div></div><div id="booking-report" class="report-list"></div></div>
+          <div class="panel"><div class="panel-heading"><div><h3>Room Inventory</h3><p>Room status distribution</p></div></div><div id="inventory-report" class="report-list"></div></div>
+        </div>
+        <div class="panel report-note"><h3>Revenue Details</h3><p id="revenue-detail"></p></div>
+      </section>
+
+      <footer>© 2026 GrandStay Hotel Management System · Academic Project</footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header"><div><h2 id="modal-title">Add Details</h2><p>Enter the information below.</p></div><button class="close-btn" id="close-modal">×</button></div>
+      <form id="data-form">
+        <div class="modal-fields" id="modal-fields"></div>
+        <div class="modal-actions"><button type="button" class="btn btn-outline" id="cancel-modal">Cancel</button><button type="submit" class="btn btn-primary">Save Details</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
